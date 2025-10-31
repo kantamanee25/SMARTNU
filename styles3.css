@@ -1,0 +1,4259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    display: flex;
+    height: 100vh;
+    background: #f8f9fa;
+}
+
+/* Header Section */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #e2b179ff 0%, #ee8c35ff 100%);
+    color: white;
+    padding: 15px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.university-logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #1e3c72;
+    font-size: 18px;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.header-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.status-badge {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #ebeeecff;
+    color: #dfece4ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff1313ff;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Sidebar */
+.sidebar {
+    width: 350px;
+    background: white;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    z-index: 999;
+    border-right: 1px solid #e9ecef;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, #e2b179ff 0%, #ee8c35ff 100%);
+    padding: 25px 20px;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
+
+.sidebar-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin: 0 auto 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.sidebar-logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sidebar-subtitle {
+    font-size: 12px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.sidebar-content {
+    padding: 25px 20px;
+}
+
+.search-section {
+    margin-bottom: 25px;
+}
+
+.search-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+        
+.search-bar .fa-search {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+/* Category Sections */
+.category-section {
+    margin-bottom: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.category-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #495057;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.category-header:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.category-header .category-number {
+    background: #667eea;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.category-title {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.category-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.category-content {
+    display: none;
+    padding: 15px;
+}
+
+.category-content.active {
+    display: block;
+}
+
+.category-header.active .category-icon {
+    transform: rotate(180deg);
+}
+
+/* Layer Items */
+.layer-item {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.layer-item:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.layer-item:last-child {
+    margin-bottom: 0;
+}
+
+.layer-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #dee2e6;
+}
+
+.layer-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Sidebar weather category: layer-item for PM color switch and chart */
+.layer-item .layer-icon .fa-palette {
+    font-size: 20px;
+    color: #e67e22;
+}
+
+.layer-item .layer-icon .fa-chart-line {
+    font-size: 20px;
+    color: #4285F4;
+}
+
+/* Heatmap icon styling */
+.layer-item .layer-icon .fa-fire {
+    font-size: 20px;
+    color: #e74c3c;
+}
+
+.layer-info {
+    flex-grow: 1;
+}
+
+.layer-title-th {
+    font-weight: 500;
+    font-size: 14px;
+    color: #495057;
+    margin-bottom: 2px;
+}
+
+.layer-title-en {
+    font-size: 12px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+    background-color: #667eea;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    position: relative;
+    margin-top: 80px;
+}
+
+/* ปรับตำแหน่งปุ่มซูมให้ไม่บังชื่อแอป */
+.leaflet-control-zoom {
+    top: 20px !important;
+    right: 10px !important;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Enhanced Weather Chart Container from smartnu.html */
+#floating-chart-container {
+    position: fixed !important;
+    top: 100px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10000 !important;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    width: 350px;
+    max-width: 85vw;
+    max-height: 65vh;
+    overflow: auto;
+    display: none;
+    border: 1px solid #e9ecef;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* ปรับปรุงปุ่มปิด */
+.close-button {
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #888;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+}
+
+.close-button:hover {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+    transform: scale(1.1);
+}
+
+.close-button:hover {
+    color: #e74c3c;
+}
+
+.chart-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chart-mode-select {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 5px;
+}
+
+.chart-mode-select label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.chart-mode-select input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.chart-mode-select input[type="radio"]:checked {
+    accent-color: #667eea;
+}
+
+.chart-controls select,
+.chart-controls button,
+.chart-controls input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.date-inputs > * {
+    flex: 1;
+}
+
+canvas {
+    width: 100% !important;
+    height: 250px !important;
+}
+
+/* Combined chart controls */
+#all-station-chart-controls {
+    margin-top: 12px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+}
+
+#all-station-chart-type {
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+}
+
+#all-station-chart-container {
+    width: 100%;
+    min-height: 220px;
+}
+
+/* กราฟรวม 10 สถานี */
+#allStationChart {
+    width: 100% !important;
+    height: 220px !important;
+    margin-top: 8px;
+}
+
+/* Station List Styles from smartnu.html */
+.station-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.station-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.station-item:hover {
+    background-color: #e9ecef;
+}
+
+.station-item.active {
+    background-color: #667eea;
+    color: white;
+    font-weight: bold;
+}
+
+.station-item:last-child {
+    border-bottom: none;
+}
+
+/* Search box for stations */
+#station-search {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-family: 'Sarabun', sans-serif;
+}
+
+/* Weather Legend */
+.weather-legend {
+    position: fixed;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2000;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.4;
+    font-family: 'Sarabun', sans-serif;
+    display: block;
+    pointer-events: all;
+}
+
+.weather-legend .row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.swatch {
+    width: 4px;
+    height: 3px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 0;
+}
+
+/* Popup Styles */
+.popup-content {
+    font-size: 14px;
+    color: #495057;
+    line-height: 1.6;
+    font-family: 'Sarabun', sans-serif;
+}
+
+.popup-content strong {
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+/* Custom Popup Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border: 1px solid #e9ecef;
+    background: white;
+    overflow: hidden;
+}
+
+.leaflet-popup-tip {
+    background: white;
+    border: 1px solid #e9ecef;
+}
+
+.custom-popup .leaflet-popup-content {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.custom-popup .leaflet-popup-close-button {
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    color: white;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    transition: all 0.3s ease;
+}
+
+.custom-popup .leaflet-popup-close-button:hover {
+    background: rgba(231, 76, 60, 0.8);
+    transform: scale(1.1);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Back to Map Button */
+.back-to-map-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Sarabun', sans-serif;
+    min-height: 44px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.back-to-map-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.back-to-map-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.back-to-map-btn i {
+    font-size: 16px;
+}
+
+/* Close Mobile Menu Button */
+.close-mobile-menu-btn {
+    background: rgba(220, 53, 69, 0.2);
+    border: 2px solid rgba(220, 53, 69, 0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Sarabun', sans-serif;
+    min-height: 44px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.close-mobile-menu-btn:hover {
+    background: rgba(220, 53, 69, 0.3);
+    border-color: rgba(220, 53, 69, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.close-mobile-menu-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.close-mobile-menu-btn i {
+    font-size: 16px;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.mobile-overlay.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Show mobile menu button */
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    /* Hide status badge text on mobile */
+    .status-badge {
+        display: none;
+    }
+    
+    /* Adjust header for mobile */
+    .header {
+        padding: 10px 15px;
+    }
+    
+    .header-title h1 {
+        font-size: 14px;
+        line-height: 1.2;
+        margin-bottom: 2px;
+    }
+
+    .header-subtitle {
+        font-size: 10px;
+        opacity: 0.8;
+    }
+    
+    /* Sidebar mobile behavior */
+    .sidebar {
+        width: 100%;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        transition: left 0.3s ease;
+        height: 100vh;
+        z-index: 1001;
+        overflow-y: auto;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+    
+    /* ปรับ sidebar content ให้ไม่ซ้อนทับกับ header */
+    .sidebar-content {
+        margin-top: 60px;
+        padding-top: 30px;
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        border-radius: 8px 8px 0 0;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    /* ปรับช่องเลือกคณะให้ไม่ซ้อนทับกับแถบสีส้ม */
+    .place-select-group {
+        margin-top: 80px !important;
+        padding-top: 50px !important;
+        border-top: 2px solid #e9ecef !important;
+        background: #f8f9fa !important;
+        border-radius: 8px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        position: relative !important;
+        z-index: 1 !important;
+        clear: both !important;
+    }
+    
+    .place-select-group label {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .place-select-group select {
+        margin-top: 5px !important;
+    }
+    
+    /* ปรับ control-group ให้มีระยะห่างเพิ่มเติม */
+    .control-group {
+        margin-top: 55px !important;
+        padding-top: 40px !important;
+        border-top: 2px solid #f8f9fa !important;
+        background: #ffffff !important;
+        border-radius: 8px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    .control-group:first-child {
+        margin-top: 0 !important;
+        padding-top: 15px !important;
+        border-top: none !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ sidebar header บนมือถือ */
+    .sidebar-header {
+        margin-top: 0;
+        padding: 20px 20px 30px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        min-height: 160px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #e2b179ff 0%, #ee8c35ff 100%);
+    }
+    
+    /* แสดงปุ่มปิดเมนูในมือถือ */
+    .close-mobile-menu-btn {
+        display: flex !important;
+        width: auto;
+        margin-top: 8px;
+        background: rgba(220, 53, 69, 0.2);
+        border: 2px solid rgba(220, 53, 69, 0.3);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-family: 'Sarabun', sans-serif;
+        min-height: 36px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .close-mobile-menu-btn:hover {
+        background: rgba(220, 53, 69, 0.3);
+        border-color: rgba(220, 53, 69, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    
+    .close-mobile-menu-btn:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* แสดงปุ่มย้อนกลับในมือถือ */
+    .back-to-map-btn {
+        display: flex !important;
+        width: 100%;
+        margin-top: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: 'Sarabun', sans-serif;
+        min-height: 48px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .back-to-map-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    
+    .back-to-map-btn:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .sidebar-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .sidebar-logo img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .sidebar-title {
+        font-size: 16px;
+    }
+    
+    .sidebar-subtitle {
+        font-size: 11px;
+    }
+    
+    /* Main content adjustments */
+    .main-content {
+        margin-top: 60px;
+    }
+    
+    /* ปรับตำแหน่งปุ่มซูมในมือถือ */
+    .leaflet-control-zoom {
+        top: 80px !important;
+        right: 10px !important;
+    }
+    
+    /* Chart containers mobile */
+    #floating-chart-container {
+        width: calc(100% - 20px);
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        max-width: none !important;
+        max-height: 70vh !important;
+        padding: 10px !important;
+    }
+    
+    #floating-line-chart-container {
+        width: calc(100% - 20px);
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        min-width: auto !important;
+        max-width: none !important;
+        max-height: 70vh !important;
+        padding: 10px !important;
+    }
+    
+    /* Layer items mobile */
+    .layer-item {
+        padding: 16px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .layer-item:active {
+        transform: scale(0.98);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    
+    .layer-icon {
+        width: 44px;
+        height: 44px;
+        margin-right: 16px;
+        border-radius: 8px;
+    }
+    
+    .layer-icon img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .layer-title-th {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    
+    .layer-title-en {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+    
+    /* Switch mobile */
+    .switch {
+        width: 56px;
+        height: 32px;
+    }
+    
+    .slider:before {
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 4px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(24px);
+    }
+    
+    /* Category sections mobile */
+    .category-header {
+        padding: 16px 20px;
+        font-size: 16px;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .category-header:active {
+        transform: scale(0.98);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    
+    .category-content {
+        padding: 16px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        margin-bottom: 8px;
+    }
+    
+    /* Search bar mobile */
+    .search-bar input {
+        padding: 16px 16px 16px 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 12px;
+        border: 2px solid #e9ecef;
+        min-height: 48px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .search-bar input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .search-bar .fa-search {
+        left: 16px;
+        font-size: 18px;
+    }
+    
+    /* Route section mobile */
+    .route-section {
+        padding: 16px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+        background: #f8f9fa;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .route-section-header {
+        font-size: 16px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: #1e3c72;
+    }
+    
+    .type-button {
+        padding: 16px;
+        font-size: 16px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .type-button:active {
+        transform: scale(0.98);
+    }
+    
+    .control-group {
+        padding: 16px;
+        margin-top: 12px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .control-group select, 
+    .control-group button {
+        padding: 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+        min-height: 48px;
+        border: 2px solid #e9ecef;
+    }
+    
+    .control-group button {
+        background: #667eea;
+        color: white;
+        border: none;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    
+    .control-group button:active {
+        transform: scale(0.98);
+        box-shadow: 0 1px 4px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Weather legend mobile */
+    .weather-legend {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 0;
+        font-size: 10px;
+        position: fixed;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    .weather-legend .swatch {
+        width: 3px;
+        height: 2px;
+        border-radius: 1px;
+    }
+    
+    /* IDW legend mobile */
+    #idw-legend {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        min-width: auto;
+        padding: 12px;
+        position: fixed;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Export controls mobile */
+    .export-controls {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 320px;
+        z-index: 10002;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        background: white;
+        padding: 20px;
+    }
+    
+    /* Performance monitor mobile */
+    .performance-monitor {
+        bottom: 80px;
+        right: 10px;
+        font-size: 10px;
+        min-width: 160px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Notification mobile */
+    .notification-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .notification {
+        margin-bottom: 8px;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .header {
+        padding: 8px 12px;
+    }
+    
+    .header-title h1 {
+        font-size: 12px;
+        line-height: 1.1;
+    }
+    
+    .mobile-menu-btn {
+        font-size: 20px;
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .sidebar-header {
+        padding: 15px 16px 20px 16px;
+        min-height: 140px;
+        z-index: 1000;
+        background: linear-gradient(135deg, #e2b179ff 0%, #ee8c35ff 100%);
+    }
+    
+    .sidebar-content {
+        margin-top: 50px;
+        padding-top: 25px;
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        border-radius: 8px 8px 0 0;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    
+    /* ปรับช่องเลือกคณะสำหรับหน้าจอเล็ก */
+    .place-select-group {
+        margin-top: 70px !important;
+        padding-top: 45px !important;
+        background: #f8f9fa !important;
+        border-radius: 6px !important;
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+        position: relative !important;
+        z-index: 1 !important;
+        clear: both !important;
+    }
+    
+    .place-select-group label {
+        margin-top: 8px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* ปรับ control-group สำหรับหน้าจอเล็ก */
+    .control-group {
+        margin-top: 45px !important;
+        padding-top: 35px !important;
+        background: #ffffff !important;
+        border-radius: 6px !important;
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
+    }
+    
+    .control-group:first-child {
+        margin-top: 0 !important;
+        padding-top: 12px !important;
+    }
+    
+    .sidebar-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .sidebar-logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .sidebar-title {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .sidebar-subtitle {
+        font-size: 10px;
+        opacity: 0.8;
+    }
+    
+    .main-content {
+        margin-top: 50px;
+    }
+    
+    /* ปรับตำแหน่งปุ่มซูมในหน้าจอเล็ก */
+    .leaflet-control-zoom {
+        top: 70px !important;
+        right: 5px !important;
+    }
+    
+    .layer-item {
+        padding: 14px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+    }
+    
+    .layer-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 14px;
+    }
+    
+    .layer-icon img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .layer-title-th {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    
+    .layer-title-en {
+        font-size: 13px;
+        opacity: 0.8;
+    }
+    
+    .category-header {
+        padding: 14px 16px;
+        font-size: 15px;
+        min-height: 52px;
+        border-radius: 10px;
+    }
+    
+    .category-content {
+        padding: 14px;
+        border-radius: 10px;
+    }
+    
+    .search-bar input {
+        padding: 14px 14px 14px 44px;
+        font-size: 16px;
+        border-radius: 10px;
+        min-height: 48px;
+    }
+    
+    .search-bar .fa-search {
+        left: 14px;
+        font-size: 16px;
+    }
+    
+    .route-section {
+        padding: 14px;
+        border-radius: 10px;
+    }
+    
+    .route-section-header {
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    
+    .type-button {
+        padding: 14px;
+        font-size: 15px;
+        margin-bottom: 10px;
+        min-height: 52px;
+        border-radius: 8px;
+    }
+    
+    .control-group {
+        padding: 14px;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+    
+    .control-group select, 
+    .control-group button {
+        padding: 14px;
+        font-size: 16px;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+    
+    /* Chart containers for very small screens */
+    #floating-chart-container,
+    #floating-line-chart-container {
+        top: 20px !important;
+        left: 5px !important;
+        right: 5px !important;
+        width: calc(100% - 10px) !important;
+        max-height: 80vh !important;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    
+    /* ปรับปรุงขนาดกราฟย้อนหลังในหน้าจอเล็ก */
+    #floating-chart-container .floating-chart-content {
+        height: 250px !important;
+        padding-bottom: 35px !important;
+    }
+    
+    #floating-chart-container canvas {
+        height: 250px !important;
+        max-height: 250px !important;
+        padding-bottom: 35px !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content {
+        height: 250px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+    
+    #floatingLineChart {
+        height: 250px !important;
+        padding: 12px 6px 35px 6px !important;
+    }
+    
+    /* เพิ่ม scrollbar สำหรับหน้าจอเล็ก */
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-track {
+        background: #f1f1f1 !important;
+        border-radius: 3px !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-thumb {
+        background: #c1c1c1 !important;
+        border-radius: 3px !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8 !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ legend ในหน้าจอเล็ก */
+    #floating-chart-container .chart-legend,
+    #floating-line-chart-container .chart-legend {
+        max-height: 160px !important;
+        padding: 8px !important;
+    }
+    
+    #floating-chart-container .chart-legend-item,
+    #floating-line-chart-container .chart-legend-item {
+        font-size: 5px !important;
+        min-width: 50px !important;
+        max-width: 70px !important;
+        padding: 1px 1px !important;
+        margin: 1px 1px !important;
+    }
+    
+    #floating-chart-container .chart-legend-item .legend-color,
+    #floating-line-chart-container .chart-legend-item .legend-color {
+        width: 4px !important;
+        height: 4px !important;
+        margin-right: 2px !important;
+    }
+    
+    #floating-chart-container .chart-legend-item .legend-text,
+    #floating-line-chart-container .chart-legend-item .legend-text {
+        font-size: 4px !important;
+        max-width: 60px !important;
+    }
+    
+    .floating-chart-content {
+        height: 250px !important;
+        border-radius: 8px;
+    }
+    
+    #floatingLineChart {
+        height: 250px !important;
+        border-radius: 8px;
+    }
+    
+    /* Weather legend for very small screens */
+    .weather-legend {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        padding: 0;
+        font-size: 9px;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        max-width: 95%;
+        margin: 0 auto;
+    }
+    
+    .weather-legend .swatch {
+        width: 2px;
+        height: 2px;
+        border-radius: 1px;
+    }
+    
+    /* IDW legend for very small screens */
+    #idw-legend {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        padding: 10px;
+        font-size: 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Performance monitor for very small screens */
+    .performance-monitor {
+        bottom: 60px;
+        right: 5px;
+        font-size: 9px;
+        min-width: 130px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Landscape mode on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 6px 12px;
+    }
+    
+    .header-title h1 {
+        font-size: 12px;
+        line-height: 1.1;
+    }
+    
+    .main-content {
+        margin-top: 45px;
+    }
+    
+    /* ปรับตำแหน่งปุ่มซูมใน landscape mode */
+    .leaflet-control-zoom {
+        top: 60px !important;
+        right: 5px !important;
+    }
+    
+    .sidebar-header {
+        padding: 10px 12px 12px 12px;
+        min-height: 90px;
+        z-index: 1000;
+        background: linear-gradient(135deg, #e2b179ff 0%, #ee8c35ff 100%);
+    }
+    
+    .sidebar-content {
+        margin-top: 25px;
+        padding-top: 12px;
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+        border-radius: 8px 8px 0 0;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    
+    /* ปรับช่องเลือกคณะสำหรับหน้าจอเล็กมาก */
+    .place-select-group {
+        margin-top: 60px !important;
+        padding-top: 40px !important;
+        background: #f8f9fa !important;
+        border-radius: 4px !important;
+        margin-left: 6px !important;
+        margin-right: 6px !important;
+        position: relative !important;
+        z-index: 1 !important;
+        clear: both !important;
+    }
+    
+    .place-select-group label {
+        margin-top: 6px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* ปรับ control-group สำหรับหน้าจอเล็กมาก */
+    .control-group {
+        margin-top: 25px !important;
+        padding-top: 20px !important;
+        background: #ffffff !important;
+        border-radius: 4px !important;
+        margin-left: 6px !important;
+        margin-right: 6px !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1) !important;
+    }
+    
+    .control-group:first-child {
+        margin-top: 0 !important;
+        padding-top: 10px !important;
+    }
+    
+    .sidebar-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .sidebar-logo img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .sidebar-title {
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .sidebar-subtitle {
+        font-size: 9px;
+        opacity: 0.8;
+    }
+    
+    .layer-item {
+        padding: 10px 14px;
+        margin-bottom: 6px;
+        border-radius: 8px;
+    }
+    
+    .layer-icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+    }
+    
+    .layer-icon img {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .layer-title-th {
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .layer-title-en {
+        font-size: 11px;
+        opacity: 0.8;
+    }
+    
+    .category-header {
+        padding: 10px 14px;
+        font-size: 13px;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+    
+    .category-content {
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    /* Chart containers in landscape */
+    #floating-chart-container,
+    #floating-line-chart-container {
+        top: 10px !important;
+        max-height: 90vh !important;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟใน landscape mode */
+    #floating-line-chart-container .floating-chart-content {
+        height: 250px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+    
+    #floatingLineChart {
+        height: 250px !important;
+        padding: 15px 8px 35px 8px !important;
+    }
+    
+    /* ปรับปรุงขนาดกราฟย้อนหลังใน landscape mode */
+    #floating-chart-container .floating-chart-content {
+        height: 200px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    #floating-chart-container canvas {
+        height: 200px !important;
+        max-height: 200px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content {
+        height: 150px !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+    
+    #floatingLineChart {
+        height: 150px !important;
+    }
+    
+    .floating-chart-content {
+        height: 200px !important;
+        border-radius: 8px;
+    }
+    
+    #floatingLineChart {
+        height: 200px !important;
+        border-radius: 8px;
+    }
+    
+    /* Weather legend in landscape */
+    .weather-legend {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        padding: 0;
+        font-size: 9px;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    .weather-legend .swatch {
+        width: 2px;
+        height: 2px;
+        border-radius: 1px;
+    }
+    
+    /* IDW legend in landscape */
+    #idw-legend {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        padding: 8px;
+        font-size: 11px;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Footer */
+.footer-info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.95);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #6c757d;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Train Icon Styles */
+.train-icon {
+    background: transparent !important;
+    border: none !important;
+}
+
+.train-icon i {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    transition: transform 0.3s ease;
+}
+
+.train-icon:hover i {
+    transform: scale(1.2);
+}
+
+/* Heatmap Layer Controls - เพิ่มสไตล์สำหรับ heatmap */
+.leaflet-heatmap-layer {
+    opacity: 0.8;
+}
+
+/* Legend สำหรับ heatmap */
+.heatmap-legend {
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-family: 'Sarabun', sans-serif;
+    display: none;
+}
+
+.heatmap-legend.active {
+    display: block;
+}
+
+.heatmap-gradient {
+    width: 100px;
+    height: 10px;
+    background: linear-gradient(to right, blue, green, yellow, orange, red);
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.heatmap-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #666;
+}
+
+/* Heatmap intensity adjustments */
+.leaflet-heatmap-layer canvas {
+    mix-blend-mode: multiply;
+}
+
+/* เพิ่ม animation สำหรับ heatmap toggle */
+.layer-item input[type="checkbox"]:checked + .slider {
+    background-color: #e74c3c;
+}
+
+/* Custom styles for heatmap toggle */
+#toggle-heatmap:checked + .slider {
+    background-color: #e74c3c !important;
+}
+
+/* ปรับแต่งการแสดงผล legend เมื่อเปิด heatmap */
+.weather-legend.heatmap-active {
+    display: none;
+}
+
+/* สไตล์สำหรับ control panel ของ heatmap */
+.heatmap-controls {
+    margin-top: 10px;
+    padding: 8px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.heatmap-intensity-slider {
+    width: 100%;
+    margin: 5px 0;
+}
+
+/* ปรับแต่งการแสดงผลใน mobile */
+@media (max-width: 768px) {
+    .heatmap-legend {
+        right: 5px;
+        bottom: 50px;
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    .heatmap-gradient {
+        width: 80px;
+        height: 8px;
+    }
+}
+/* เพิ่มสไตล์สำหรับระบบแจ้งเตือนและสถานะ */
+
+/* Notification Styles */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    max-width: 350px;
+}
+
+.notification {
+    background: #fff;
+    border-left: 4px solid #28a745;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    font-family: 'Sarabun', sans-serif;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.error {
+    border-left-color: #dc3545;
+}
+
+.notification.warning {
+    border-left-color: #ffc107;
+}
+
+.notification.info {
+    border-left-color: #17a2b8;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.notification-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #495057;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-close:hover {
+    color: #495057;
+}
+
+.notification-body {
+    font-size: 13px;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+/* Data Quality Indicators */
+.data-quality-indicator {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.data-quality-indicator.good {
+    background: #28a745;
+}
+
+.data-quality-indicator.warning {
+    background: #ffc107;
+}
+
+.data-quality-indicator.error {
+    background: #dc3545;
+}
+
+/* Export Button Styles */
+.export-controls {
+    position: absolute;
+    top: 220px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.export-controls.show {
+    display: block;
+}
+
+.export-controls h6 {
+    margin: 0 0 10px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.export-controls button {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 6px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+    color: #495057;
+    font-size: 11px;
+    font-family: 'Sarabun', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.export-controls button:hover {
+    background: #f8f9fa;
+    border-color: #4285F4;
+    color: #4285F4;
+}
+
+.export-controls button:last-child {
+    margin-bottom: 0;
+}
+
+/* Performance Monitor */
+.performance-monitor {
+    position: absolute;
+    bottom: 120px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    z-index: 1000;
+    display: none;
+    min-width: 200px;
+}
+
+.performance-monitor.show {
+    display: block;
+}
+
+.performance-monitor .metric {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 0;
+}
+
+.performance-monitor .metric-label {
+    color: #ccc;
+}
+
+.performance-monitor .metric-value {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Advanced Chart Controls */
+.advanced-chart-controls {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.advanced-chart-controls h6 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.control-row:last-child {
+    margin-bottom: 0;
+}
+
+.control-row label {
+    font-size: 12px;
+    color: #6c757d;
+    min-width: 80px;
+}
+
+.control-row input,
+.control-row select {
+    flex: 1;
+    padding: 4px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Sarabun', sans-serif;
+}
+
+.control-row input[type="range"] {
+    padding: 0;
+}
+
+.control-row .range-value {
+    min-width: 40px;
+    text-align: center;
+    font-size: 11px;
+    color: #495057;
+    background: #e9ecef;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+/* Data Comparison Tools */
+.comparison-tools {
+    position: absolute;
+    top: 260px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+    min-width: 250px;
+}
+
+.comparison-tools.show {
+    display: block;
+}
+
+.comparison-tools h6 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.station-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.station-select {
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'Sarabun', sans-serif;
+}
+
+.comparison-result {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #495057;
+    border-left: 3px solid #4285F4;
+}
+
+/* Mobile Responsive Improvements */
+@media (max-width: 768px) {
+    .data-storage-info,
+    .export-controls,
+    .comparison-tools {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 300px;
+        z-index: 10002;
+    }
+    
+    .status-toggle-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        top: auto;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .performance-monitor {
+        bottom: 80px;
+        right: 20px;
+        font-size: 9px;
+    }
+    
+    .notification-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .notification {
+        margin-bottom: 5px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .data-storage-info,
+    .export-controls,
+    .comparison-tools {
+        background: rgba(33, 37, 41, 0.95);
+        color: #f8f9fa;
+        border: 1px solid #495057;
+    }
+    
+    .data-storage-info h5,
+    .export-controls h6,
+    .comparison-tools h6 {
+        color: #f8f9fa;
+    }
+    
+    .storage-item {
+        border-bottom-color: #495057;
+    }
+    
+    .export-controls button {
+        background: #495057;
+        color: #f8f9fa;
+        border-color: #6c757d;
+    }
+    
+    .export-controls button:hover {
+        background: #6c757d;
+        border-color: #4285F4;
+    }
+    
+    .notification {
+        background: #343a40;
+        color: #f8f9fa;
+    }
+    
+    .notification-title {
+        color: #f8f9fa;
+    }
+    
+    .notification-close {
+        color: #adb5bd;
+    }
+    
+    .notification-close:hover {
+        color: #f8f9fa;
+    }
+}
+
+/* Animation Improvements */
+.chart-update-animation {
+    animation: chartUpdate 0.5s ease-in-out;
+}
+
+@keyframes chartUpdate {
+    0% { opacity: 0.7; transform: scale(0.98); }
+    50% { opacity: 0.9; transform: scale(1.01); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.data-point-highlight {
+    animation: dataPointPulse 1s ease-in-out;
+}
+
+@keyframes dataPointPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Accessibility Improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus Styles */
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #4285F4;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .weather-legend,
+    .data-storage-info,
+    .export-controls {
+        border: 2px solid #000;
+    }
+    
+    .status-toggle-btn {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+    
+    .status-dot {
+        animation: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .status-toggle-btn,
+    .data-storage-info,
+    .export-controls,
+    .comparison-tools,
+    .performance-monitor,
+    .notification-container {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-top: 0;
+    }
+    
+    #map {
+        height: 400px !important;
+    }
+    
+    .floating-chart-content {
+        break-inside: avoid;
+    }
+}
+/* Floating Line Chart Container */
+        #floating-line-chart-container {
+    position: fixed !important;
+    top: 100px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10000 !important;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    width: 70%;
+    max-width: 900px;
+    min-width: 600px;
+    max-height: 75vh;
+    overflow: auto;
+    border: 1px solid #e9ecef;
+    display: none;
+}
+
+        /* History Controls สำหรับ Floating Chart */
+        #floating-history-controls {
+            margin-bottom: 8px;
+            padding: 6px;
+        }
+
+        #floating-history-controls label {
+            font-size: 11px !important;
+            font-weight: 500 !important;
+        }
+
+        #floating-history-controls input[type="date"] {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 11px !important;
+            padding: 4px 6px !important;
+        }
+
+        #floating-history-controls button {
+            font-family: 'Sarabun', sans-serif;
+            font-weight: 500;
+            font-size: 11px !important;
+            padding: 6px 12px !important;
+            transition: all 0.3s ease;
+        }
+
+        #floating-history-controls button:hover {
+            background: #2c5aa0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        #floating-history-controls button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #floating-history-controls .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .chart-controls-inline {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chart-controls-inline select {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 14px;
+        }
+
+        .chart-mode-toggle {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chart-mode-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .floating-chart-content {
+            width: 100%;
+            height: 350px;
+            position: relative;
+        }
+
+                #floatingLineChart {
+            width: 100% !important;
+            height: 350px !important;
+        }
+
+        .close-button {
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #e74c3c;
+        }
+
+        /* Route Finding Inputs */
+        .route-inputs {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .route-inputs input {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 12px;
+        }
+
+        .route-inputs button {
+            font-family: 'Sarabun', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .route-inputs button:hover {
+            background: #2c5aa0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design สำหรับ Floating Chart */
+        @media (max-width: 1024px) {
+            #floating-line-chart-container {
+                width: 95%;
+                min-width: 600px;
+                left: 2.5%;
+                transform: none;
+            }
+            
+            .chart-controls-inline {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .floating-chart-content {
+                height: 300px;
+            }
+            
+            #floatingLineChart {
+                height: 300px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #floating-line-chart-container {
+                width: calc(100% - 20px);
+                min-width: auto;
+                left: 10px;
+                right: 10px;
+                transform: none;
+                top: 100px;
+            }
+            
+            .floating-chart-content {
+                height: 250px;
+            }
+            
+            #floatingLineChart {
+                height: 250px !important;
+            }
+            
+            .chart-mode-toggle {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        /* เพิ่มสไตล์สำหรับแสดงสถานะข้อมูลเรียลไทม์ */
+        .realtime-status {
+            position: absolute;
+            bottom: 60px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #6c757d;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .realtime-status.active {
+            display: block;
+        }
+
+        .realtime-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #28a745;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        /* เพิ่มสไตล์สำหรับการแสดงข้อมูลที่เก็บไว้ */
+        .data-storage-info {
+            position: absolute;
+            top: 100px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #495057;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 200px;
+            display: none;
+        }
+
+        .data-storage-info.show {
+            display: block;
+        }
+
+        .data-storage-info h5 {
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .data-storage-info .storage-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 4px 0;
+            padding: 2px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-storage-info .storage-item:last-child {
+            border-bottom: none;
+        }
+
+        /* เพิ่มสไตล์สำหรับปุ่มแสดง/ซ่อนข้อมูลสถานะ */
+        .status-toggle-btn {
+            position: absolute;
+            top: 140px;
+            right: 10px;
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-family: 'Sarabun', sans-serif;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .status-toggle-btn:hover {
+            background: #2c5aa0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* เพิ่มสไตล์สำหรับแสดงจำนวนข้อมูลในกราห */
+        .chart-data-info {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-family: 'Sarabun', sans-serif;
+            z-index: 10;
+        }
+
+        /* เพิ่มสไตล์สำหรับแสดงสถานะการรีเซ็ตข้อมูล */
+        .reset-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            animation: fadeInOut 3s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        }
+
+        /* เพิ่มสไตล์สำหรับแสดงข้อมูลการเชื่อมต่อ */
+        .connection-status {
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: 'Sarabun', sans-serif;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .connection-status.online {
+            background: rgba(40, 167, 69, 0.9);
+            color: white;
+        }
+
+        .connection-status.offline {
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+        }
+
+        .connection-status.loading {
+            background: rgba(255, 193, 7, 0.9);
+            color: #333;
+        }
+        /* เพิ่ม backdrop สำหรับกราฟ */
+.chart-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+}
+
+.chart-backdrop.show {
+    display: block;
+}
+/* ปรับปรุง responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+    #floating-chart-container {
+        position: fixed !important;
+        top: 50px !important;
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: none !important;
+        max-height: 85vh !important;
+    }
+    
+    #floating-line-chart-container {
+        position: fixed !important;
+        top: 50px !important;
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        width: auto !important;
+        min-width: auto !important;
+        max-width: none !important;
+        max-height: 85vh !important;
+    }
+    
+    .floating-chart-content {
+        height: 300px !important;
+    }
+    
+    #floatingLineChart {
+        height: 300px !important;
+    }
+}
+/* เพิ่มเอฟเฟกต์เมื่อเปิดกราฟ */
+.chart-container-enter {
+    animation: chartSlideIn 0.3s ease-out;
+}
+
+.chart-container-exit {
+    animation: chartSlideOut 0.3s ease-in;
+}
+
+@keyframes chartSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes chartSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+/* Chart Backdrop */
+.chart-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.chart-backdrop.show {
+    display: block;
+    animation: backdropFadeIn 0.3s ease-out;
+}
+
+@keyframes backdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ปรับปรุงการแสดงผลกราฟ */
+#floating-chart-container,
+#floating-line-chart-container {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+    border: 2px solid #e9ecef !important;
+}
+
+/* ปรับปรุงสำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 480px) {
+    #floating-chart-container,
+    #floating-line-chart-container {
+        top: 20px !important;
+        left: 5px !important;
+        right: 5px !important;
+        transform: none !important;
+        width: auto !important;
+        min-width: auto !important;
+        max-width: none !important;
+        max-height: 90vh !important;
+    }
+}
+
+/* ปรับปรุงปุ่มปิดให้เด่นขึ้น */
+.close-button {
+    position: sticky;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.close-button:hover {
+    background: rgba(220, 53, 69, 0.2);
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+/* ปรับปรุงการแสดงผลเนื้อหากราฟ */
+.chart-content {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* ปรับปรุง scrollbar สำหรับกราฟ */
+#floating-chart-container::-webkit-scrollbar,
+#floating-line-chart-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#floating-chart-container::-webkit-scrollbar-track,
+#floating-line-chart-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#floating-chart-container::-webkit-scrollbar-thumb,
+#floating-line-chart-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#floating-chart-container::-webkit-scrollbar-thumb:hover,
+#floating-line-chart-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* เพิ่มเอฟเฟกต์เงาให้กราห */
+canvas {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ปรับปรุงการแสดงผลใน tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    #floating-line-chart-container {
+        width: 90% !important;
+        min-width: 600px !important;
+    }
+    
+    .floating-chart-content {
+        height: 400px !important;
+    }
+    
+    #floatingLineChart {
+        height: 400px !important;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (max-width: 768px) {
+    /* เพิ่มขนาดปุ่มสำหรับการสัมผัส */
+    .switch {
+        width: 56px;
+        height: 32px;
+    }
+    
+    .slider:before {
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 4px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(24px);
+    }
+    
+    /* ปรับปรุงปุ่มต่างๆ ให้เหมาะสมกับการสัมผัส */
+    button, 
+    .type-button,
+    .layer-item,
+    .category-header {
+        min-height: 48px; /* เพิ่มขนาดสำหรับการสัมผัสที่ง่ายขึ้น */
+        min-width: 48px;
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+    
+    /* ปรับปรุง input fields */
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        min-height: 44px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* ปรับปรุงการแสดงผลของ popup */
+    .leaflet-popup-content {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    /* ปรับปรุงการแสดงผลของ markers */
+    .leaflet-marker-icon {
+        transition: transform 0.2s ease;
+    }
+    
+    .leaflet-marker-icon:hover {
+        transform: scale(1.1);
+    }
+    
+    /* ปรับปรุงการแสดงผลของ controls */
+    .leaflet-control-zoom a {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        font-size: 18px;
+    }
+    
+    .leaflet-control-layers {
+        font-size: 14px;
+    }
+    
+    .leaflet-control-layers label {
+        padding: 8px 12px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟบนมือถือ */
+    .chart-header {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+    }
+    
+    .chart-title {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟในโหมดเรียลไทม์ */
+    .chart-mode-toggle {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .chart-mode-toggle label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .chart-mode-toggle label:hover {
+        border-color: #667eea;
+        background: #f8f9fa;
+    }
+    
+    .chart-mode-toggle input[type="radio"]:checked + label {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+    
+    .chart-mode-toggle input[type="radio"] {
+        display: none;
+    }
+    
+    /* ปรับขนาดวงกลมของ radio button */
+    .chart-mode-select input[type="radio"] {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+        cursor: pointer;
+    }
+    
+    .chart-mode-select input[type="radio"]:checked {
+        accent-color: #667eea;
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟในมือถือ */
+    @media (max-width: 768px) {
+        .chart-mode-toggle {
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .chart-mode-toggle label {
+            justify-content: center;
+            padding: 12px 16px;
+            font-size: 16px;
+            min-height: 48px;
+        }
+        
+        /* ปรับขนาดวงกลมของ radio button ในมือถือ */
+        .chart-mode-select input[type="radio"] {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            cursor: pointer;
+        }
+        
+        .chart-mode-select input[type="radio"]:checked {
+            accent-color: #667eea;
+        }
+        
+    /* ปรับปรุงการแสดงผลของกราฟในโหมดเรียลไทม์บนมือถือ */
+    .floating-chart-content {
+        height: 320px !important;
+    }
+    
+    #floatingLineChart {
+        height: 320px !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของแกน X และ Y ในมือถือ */
+    #floatingLineChart {
+        padding: 20px 10px 30px 10px !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟรวม 10 สถานีในมือถือ */
+    #floating-line-chart-container {
+        width: calc(100% - 20px) !important;
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        max-width: none !important;
+        max-height: 90vh !important;
+        top: 50px !important;
+        padding: 10px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+    }
+    
+    #floating-line-chart-container .floating-chart-content {
+        height: 400px !important;
+        min-height: 400px !important;
+        padding: 10px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+    
+    #floatingLineChart {
+        height: 400px !important;
+        max-height: 400px !important;
+        width: 100% !important;
+        padding: 20px 10px 50px 10px !important;
+        touch-action: pan-y !important;
+    }
+    
+    /* เพิ่ม scrollbar สำหรับกราฟ */
+    #floating-line-chart-container::-webkit-scrollbar,
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar {
+        width: 8px !important;
+        height: 8px !important;
+    }
+    
+    #floating-line-chart-container::-webkit-scrollbar-track,
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-track {
+        background: #f1f1f1 !important;
+        border-radius: 4px !important;
+    }
+    
+    #floating-line-chart-container::-webkit-scrollbar-thumb,
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-thumb {
+        background: #c1c1c1 !important;
+        border-radius: 4px !important;
+    }
+    
+    #floating-line-chart-container::-webkit-scrollbar-thumb:hover,
+    #floating-line-chart-container .floating-chart-content::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8 !important;
+    }
+    
+    /* เพิ่มปุ่มเลื่อนขึ้นและลงสำหรับกราฟ */
+    .chart-scroll-button {
+        position: absolute !important;
+        background: #666666 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 2px !important;
+        width: 20px !important;
+        height: 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.15) !important;
+        transition: all 0.3s ease !important;
+        z-index: 1000 !important;
+        font-size: 8px !important;
+        opacity: 0.8 !important;
+    }
+    
+    .chart-scroll-button:hover {
+        background: #555555 !important;
+        opacity: 1 !important;
+        transform: scale(1.05) !important;
+    }
+    
+    .chart-scroll-button:active {
+        transform: scale(0.95) !important;
+    }
+    
+    /* ปุ่มเลื่อนขึ้น */
+    .chart-scroll-button-up {
+        top: 6px !important;
+        right: 6px !important;
+    }
+    
+    /* ปุ่มเลื่อนลง */
+    .chart-scroll-button-down {
+        top: 30px !important;
+        right: 6px !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของปุ่มเลื่อนในมือถือ */
+    @media (max-width: 768px) {
+        .chart-scroll-button {
+            display: none !important; /* ซ่อนปุ่มเลื่อนในมือถือ */
+        }
+    }
+    
+    
+    /* ปรับปรุงการแสดงผลของกราฟย้อนหลังในมือถือ */
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin: 10px 0;
+    }
+    
+    .chart-container canvas {
+        width: 100% !important;
+        height: 200px !important;
+        max-height: 200px !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของปุ่มและ input ในมือถือ */
+    .chart-controls input,
+    .chart-controls select,
+    .chart-controls button {
+        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        border: 2px solid #e9ecef;
+        min-height: 40px;
+    }
+    
+    /* ปรับปรุง history controls สำหรับมือถือ */
+    #floating-history-controls {
+        margin-bottom: 6px !important;
+        padding: 4px !important;
+    }
+    
+    #floating-history-controls label {
+        font-size: 10px !important;
+    }
+    
+    #floating-history-controls input[type="date"] {
+        font-size: 10px !important;
+        padding: 3px 4px !important;
+    }
+    
+    #floating-history-controls button {
+        font-size: 10px !important;
+        padding: 4px 8px !important;
+    }
+    
+    .chart-controls button {
+        background: #667eea;
+        color: white;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .chart-controls button:hover {
+        background: #5a6fd8;
+        transform: translateY(-1px);
+    }
+    
+    .chart-controls button:active {
+        transform: translateY(0);
+    }
+    
+    /* ปรับปรุงการแสดงผลของกราฟย้อนหลังในมือถือ */
+    #floating-chart-container {
+        width: calc(100% - 20px) !important;
+        left: 10px !important;
+        right: 10px !important;
+        transform: none !important;
+        max-width: none !important;
+        max-height: 85vh !important;
+        top: 50px !important;
+        padding: 10px !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+    }
+    
+    #floating-chart-container .floating-chart-content {
+        height: 300px !important;
+        min-height: 300px !important;
+        padding-bottom: 35px !important;
+    }
+    
+    #floating-chart-container canvas {
+        height: 300px !important;
+        padding-bottom: 35px !important;
+        max-height: 280px !important;
+        width: 100% !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ legend ในมือถือ */
+    #floating-chart-container .chart-legend {
+        position: relative !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        margin-top: 10px !important;
+        padding: 10px !important;
+        background: #f8f9fa !important;
+        border-radius: 8px !important;
+        max-height: 150px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ legend ในกราฟรวม 10 สถานี */
+    #floating-line-chart-container .chart-legend {
+        position: relative !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        margin-top: 10px !important;
+        padding: 10px !important;
+        background: #f8f9fa !important;
+        border-radius: 8px !important;
+        max-height: 200px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ legend ในกราฟรวม 10 สถานีสำหรับมือถือ */
+    @media (max-width: 768px) {
+        #floating-line-chart-container .chart-legend {
+            max-height: 180px !important;
+            padding: 8px !important;
+        }
+    }
+    
+    /* เพิ่ม scrollbar สำหรับ legend */
+    #floating-chart-container .chart-legend::-webkit-scrollbar,
+    #floating-line-chart-container .chart-legend::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+    }
+    
+    #floating-chart-container .chart-legend::-webkit-scrollbar-track,
+    #floating-line-chart-container .chart-legend::-webkit-scrollbar-track {
+        background: #f1f1f1 !important;
+        border-radius: 3px !important;
+    }
+    
+    #floating-chart-container .chart-legend::-webkit-scrollbar-thumb,
+    #floating-line-chart-container .chart-legend::-webkit-scrollbar-thumb {
+        background: #c1c1c1 !important;
+        border-radius: 3px !important;
+    }
+    
+    #floating-chart-container .chart-legend::-webkit-scrollbar-thumb:hover,
+    #floating-line-chart-container .chart-legend::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8 !important;
+    }
+    
+    #floating-chart-container .chart-legend-item,
+    #floating-line-chart-container .chart-legend-item {
+        display: flex !important;
+        align-items: center !important;
+        margin: 2px 3px !important;
+        font-size: 8px !important;
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 2px 4px !important;
+        background: white !important;
+        border-radius: 4px !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+        flex: 0 0 auto !important;
+    }
+    
+    #floating-chart-container .chart-legend-item .legend-color,
+    #floating-line-chart-container .chart-legend-item .legend-color {
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 50% !important;
+        margin-right: 4px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    #floating-chart-container .chart-legend-item .legend-text,
+    #floating-line-chart-container .chart-legend-item .legend-text {
+        font-size: 7px !important;
+        line-height: 1.1 !important;
+        word-break: break-word !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        max-width: 100px !important;
+    }
+        
+        /* ปรับปรุงการแสดงผลของข้อมูลในกราฟ */
+        .chart-data-info {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-family: 'Sarabun', sans-serif;
+            z-index: 10;
+        }
+    }
+    
+    .close-button {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .chart-controls {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .chart-controls select,
+    .chart-controls button,
+    .chart-controls input {
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .date-inputs {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .date-inputs > * {
+        flex: none;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ station list */
+    .station-list {
+        max-height: 200px;
+    }
+    
+    .station-item {
+        padding: 12px 15px;
+        font-size: 14px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .station-item .zoom-station-btn {
+        margin-left: auto;
+        padding: 8px;
+        font-size: 16px;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ route inputs */
+    .route-inputs {
+        padding: 10px;
+    }
+    
+    .route-inputs input {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .route-inputs button {
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ export controls */
+    .export-controls button {
+        padding: 10px;
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ performance monitor */
+    .performance-monitor {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+    
+    .performance-monitor .metric {
+        margin: 1px 0;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ notification */
+    .notification {
+        padding: 10px 12px;
+        margin-bottom: 8px;
+    }
+    
+    .notification-title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .notification-body {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .notification-close {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ markers บนมือถือ */
+    .leaflet-marker-icon {
+        transition: all 0.2s ease;
+    }
+    
+    .leaflet-marker-icon:active {
+        transform: scale(1.1);
+    }
+    
+    /* ปรับปรุงการแสดงผลของ popup บนมือถือ */
+    .leaflet-popup-content-wrapper {
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        max-width: 90vw;
+        background: white;
+        overflow: hidden;
+    }
+    
+    .leaflet-popup-content {
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 1.4;
+        background: white;
+    }
+    
+    .leaflet-popup-tip {
+        border-radius: 4px;
+    }
+    
+    .leaflet-popup-close-button {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        line-height: 32px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.3);
+        color: white;
+        transition: all 0.2s ease;
+    }
+    
+    .leaflet-popup-close-button:hover {
+        background: rgba(220, 53, 69, 0.8);
+        transform: scale(1.1);
+    }
+    
+    /* ปรับปรุงการแสดงผลของ control layers */
+    .leaflet-control-layers {
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    
+    .leaflet-control-layers-toggle {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+    }
+    
+    /* ปรับปรุงการแสดงผลของ zoom controls */
+    .leaflet-control-zoom {
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        top: 100px !important; /* เลื่อนปุ่มซูมลงมาให้ไม่บังชื่อแอป */
+    }
+    
+    .leaflet-control-zoom a {
+        border-radius: 8px;
+        font-size: 20px;
+        transition: all 0.2s ease;
+    }
+    
+    .leaflet-control-zoom a:hover {
+        background: #f8f9fa;
+        transform: scale(1.05);
+    }
+    
+    /* ปรับปรุงการแสดงผลของ attribution */
+    .leaflet-control-attribution {
+        font-size: 10px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+/* ปรับปรุงการแสดงผลใน landscape mode บนมือถือ */
+@media (max-height: 500px) and (orientation: landscape) {
+    #floating-chart-container,
+    #floating-line-chart-container {
+        top: 10px !important;
+        max-height: 95vh !important;
+    }
+    
+    .floating-chart-content {
+        height: 250px !important;
+    }
+    
+    #floatingLineChart {
+        height: 250px !important;
+    }
+}
+#calculate_navigation_route:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#clear_route:hover {
+    background: #c82333;
+}
+
+.custom-start-icon, .custom-end-icon {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+/* Custom Data Marker Styles */
+.custom-data-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.custom-data-marker:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Animation for markers */
+@keyframes markerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.custom-data-marker {
+    animation: markerPulse 2s infinite;
+}
+/* Value Label Marker Hover Effects */
+.value-label-marker:hover {
+    z-index: 1001 !important;
+}
+
+/* Bus stop text label styles: smaller and single-line */
+.bus-stop-label {
+    background: transparent;
+    border: none;
+    pointer-events: none; /* allow clicking the marker beneath */
+    display: none; /* hide floating text labels on the map */
+}
+
+.bus-stop-name {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 10px;           /* smaller text */
+    line-height: 1;            /* compact height */
+    white-space: nowrap;       /* force single line */
+    max-width: none;           /* prevent wrapping due to width */
+    background: rgba(255,255,255,0.85);
+    color: #1e3c72;
+    padding: 1px 3px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.leaflet-marker-icon:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+/* Animation สำหรับ marker เมื่อถูกเลือก */
+@keyframes markerBounce {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+    }
+    25% { 
+        transform: translateY(-15px) scale(1.1); 
+    }
+    50% { 
+        transform: translateY(0) scale(1.05); 
+    }
+    75% { 
+        transform: translateY(-8px) scale(1.08); 
+    }
+}
+
+/* เพิ่มเอฟเฟกต์สำหรับ station item ที่ active */
+.station-item.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transform: scale(1.02);
+}
+
+.station-item.active::before {
+    content: '📍';
+    margin-right: 8px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Smooth scroll สำหรับ station list */
+.station-list {
+    scroll-behavior: smooth;
+}
+
+/* Highlight effect เมื่อ hover */
+.station-item:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.station-item:active {
+    transform: scale(0.98);
+}
+/* ปุ่มซูมข้างรายการสถานี */
+.zoom-station-btn {
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.station-item:hover .zoom-station-btn {
+    opacity: 1;
+}
+
+.zoom-station-btn:hover {
+    color: #764ba2 !important;
+    transform: scale(1.2);
+}
+
+.zoom-station-btn:active {
+    transform: scale(0.9);
+}
+
+/* เพิ่ม tooltip effect */
+.zoom-station-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    right: -80px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+/* Route Section Styling */
+.route-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.route-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e3c72;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.route-type-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.type-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.type-button:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.type-button.active {
+    background-color: #d1e7dd;
+    border-color: #4CAF50;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.dropdown-container {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.dropdown-container.show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+.dropdown-container select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* IDW Legend Styles */
+#idw-legend {
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+    font-family: "Sarabun", Arial, sans-serif;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 1000;
+}
+
+#idw-legend .legend-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+#idw-legend .legend-scale {
+    display: flex;
+    height: 14px;
+    margin-bottom: 6px;
+    gap: 3px;
+}
+
+#idw-legend .legend-scale div {
+    flex: 1;
+}
+
+/* IDW Legend Styles - Enhanced */
+#idw-legend {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    font-family: "Sarabun", Arial, sans-serif;
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    z-index: 2000;
+    min-width: 220px;
+    border: 1px solid #e9ecef;
+    pointer-events: all;
+}
+
+#idw-legend .legend-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #495057;
+    font-size: 14px;
+}
+
+#idw-legend .legend-scale {
+    display: flex;
+    height: 16px;
+    margin-bottom: 8px;
+    gap: 2px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#idw-legend .legend-scale div {
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+#idw-legend .legend-scale div:hover {
+    transform: scaleY(1.2);
+}
+
+#idw-legend .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+#idw-legend .legend-info {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #e9ecef;
+    font-size: 11px;
+    color: #6c757d;
+}
+
+/* IDW Control Panel */
+#idw-controls {
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+    min-width: 180px;
+}
+
+#idw-controls.show {
+    display: block;
+}
+
+#idw-controls h6 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+}
+
+#idw-controls .control-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#idw-controls .control-row:last-child {
+    margin-bottom: 0;
+}
+
+#idw-controls label {
+    font-size: 12px;
+    color: #6c757d;
+    margin-right: 8px;
+}
+
+#idw-controls input[type="range"] {
+    flex: 1;
+    margin: 0 8px;
+}
+
+#idw-controls .range-value {
+    min-width: 40px;
+    text-align: center;
+    font-size: 11px;
+    color: #495057;
+    background: #f8f9fa;
+    border-radius: 3px;
+    padding: 2px 6px;
+}
+
+#idw-controls button {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+    color: #495057;
+    font-size: 11px;
+    font-family: 'Sarabun', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+#idw-controls button:hover {
+    background: #f8f9fa;
+    border-color: #4285F4;
+    color: #4285F4;
+}
+
+/* IDW Status Indicator */
+#idw-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #6c757d;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+#idw-status.show {
+    display: block;
+}
+
+#idw-status .status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+#idw-status .status-indicator.loading {
+    background: #ffc107;
+    animation: pulse 1s infinite;
+}
+
+#idw-status .status-indicator.success {
+    background: #28a745;
+}
+
+#idw-status .status-indicator.error {
+    background: #dc3545;
+}
+
+/* IDW Hexagon Grid Styles */
+.idw-hexagon {
+    stroke: #555;
+    stroke-width: 0.3;
+    fill-opacity: 0.75;
+    transition: all 0.3s ease;
+}
+
+.idw-hexagon:hover {
+    stroke-width: 1;
+    fill-opacity: 0.9;
+    stroke: #333;
+}
+
+/* IDW Station Markers */
+.idw-station-marker {
+    stroke: #222;
+    stroke-width: 1;
+    fill-opacity: 0.95;
+    transition: all 0.3s ease;
+}
+
+.idw-station-marker:hover {
+    stroke-width: 2;
+    stroke: #000;
+    transform: scale(1.1);
+}
+
+/* ป้องกันการซ้อนทับของ Legend กับ Sidebar */
+@media (min-width: 769px) {
+    .weather-legend {
+        left: 370px !important;
+        bottom: 20px !important;
+    }
+    
+    #idw-legend {
+        right: 20px !important;
+        bottom: 60px !important;
+    }
+}
+
+/* จัดการการแสดงผลเมื่อ IDW เปิดอยู่ */
+#toggle-idw:checked ~ * .weather-legend {
+    left: 370px !important;
+    bottom: 20px !important;
+}
+
+/* ซ่อนสถานีอากาศเมื่อ IDW เปิดอยู่ */
+body.idw-active .custom-weather-icon {
+    display: none !important;
+}
+
+body.idw-active .idw-station-marker {
+    display: none !important;
+}
+
+/* Mobile Responsive for IDW */
+@media (max-width: 768px) {
+    #idw-legend {
+        bottom: 20px;
+        right: 5px;
+        left: 5px;
+        min-width: auto;
+        padding: 10px;
+        position: fixed;
+    }
+    
+    #idw-controls {
+        top: 80px;
+        right: 5px;
+        left: 5px;
+        min-width: auto;
+    }
+    
+    #idw-status {
+        top: 5px;
+        right: 5px;
+        left: 5px;
+        text-align: center;
+    }
+    
+    /* Weather Legend สำหรับมือถือ */
+    .weather-legend {
+        left: 10px;
+        bottom: 10px;
+        right: 10px;
+        position: fixed;
+        padding: 0;
+        font-size: 10px;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    .weather-legend .swatch {
+        width: 3px;
+        height: 2px;
+        border-radius: 1px;
+    }
+}
+/* Custom Start and End Marker Animation */
+.custom-start-icon, .custom-end-icon {
+    animation: markerBounce 1s ease-in-out 2;
+}
+
+@keyframes markerBounce {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+    }
+    25% { 
+        transform: translateY(-15px) scale(1.1); 
+    }
+    50% { 
+        transform: translateY(0) scale(1.05); 
+    }
+    75% { 
+        transform: translateY(-8px) scale(1.08); 
+    }
+}
+
+.custom-start-icon:hover,
+.custom-end-icon:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
