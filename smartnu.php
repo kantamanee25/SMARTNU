@@ -296,9 +296,6 @@ include('./connect.php');
                 <div class="status-dot"></div>
                 ระบบออนไลน์ - รถไฟฟ้าเรียลไทม์
             </div>
-            <div id="realtime-status" style="font-size: 12px; color: #666; margin-top: 5px;">
-                กำลังโหลดข้อมูล...
-            </div>
         </div>
     </div>
 
@@ -1203,25 +1200,26 @@ if (response.end_coords) {
         // Show loading spinner
         document.getElementById('loadingSpinner').style.display = 'block';
 
-        // Weather System Constants - ใช้ endpoint เดียวสำหรับข้อมูล weather ทั้งหมด
-        const ENDPOINT_WEATHER_LATEST = './weather_2.php';
+        // Weather System Constants
+        const ENDPOINT_W1_LATEST = './weather_1.php';
+        const ENDPOINT_W2_LATEST = './weather_2.php';
         const ENDPOINT_W1_HISTORY = './weather_history_1.php';
         const ENDPOINT_W2_HISTORY = './weather_history_2.php';
         
-        const REFRESH_MS = 30_000; // อัปเดตทุก 30 วินาที
+        const REFRESH_MS = 60_000;
 
-        // Station Config - ใช้ endpoint เดียวสำหรับข้อมูล weather ทั้งหมด
+        // Station Config
         const STATIONS = [
-            { name: 'คณะเกษตรศาสตร์ทรัพยากรธรรมชาติและสิ่งแวดล้อม', eui: '0000fcc23d222cb9', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7441, lng: 100.1972 },
-            { name: 'แปลงเกษตร', eui: '0000fcc23d223e2f', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7423, lng: 100.1985 },
-            { name: 'อาคาร KNECC', eui: '0000fcc23d22ac5d', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7460, lng: 100.1955 },
-            { name: 'สนามฟุตบอล', eui: '0000fcc23d22248c', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7465, lng: 100.1980 },
-            { name: 'สนามฟุตซอล', eui: '0000fcc23d221b88', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7387, lng: 100.1993 },  
-            { name: 'คณะวิทยาศาสตร์', eui: '0000fcc23d224d77', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7470, lng: 100.1990 },
-            { name: 'อ่างเก็บน้ำหลังหอใน', eui: '0000fcc23d22894f', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7435, lng: 100.1950 },
-            { name: 'โรงเรียนอนุบาลและประถมศาธิต', eui: '0000fcc23d224ae6', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7480, lng: 100.1965 },
-            { name: 'คณะพยาบาลศาสตร์', eui: '0000fcc23d229a41', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7495, lng: 100.1975 },
-            { name: 'ลานสมเด็จพระนเรศวรมหาราช', eui: '0000fcc23d22ad80', latest_endpoint: ENDPOINT_WEATHER_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7510, lng: 100.1980 }
+            { name: 'คณะเกษตรศาสตร์ทรัพยากรธรรมชาติและสิ่งแวดล้อม', eui: '0000fcc23d222cb9', latest_endpoint: ENDPOINT_W1_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7441, lng: 100.1972 },
+            { name: 'แปลงเกษตร', eui: '0000fcc23d223e2f', latest_endpoint: ENDPOINT_W1_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7423, lng: 100.1985 },
+            { name: 'อาคาร KNECC', eui: '0000fcc23d22ac5d', latest_endpoint: ENDPOINT_W1_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7460, lng: 100.1955 },
+            { name: 'สนามฟุตบอล', eui: '0000fcc23d22248c', latest_endpoint: ENDPOINT_W1_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7465, lng: 100.1980 },
+            { name: 'สนามฟุตซอล', eui: '0000fcc23d221b88', latest_endpoint: ENDPOINT_W1_LATEST, history_endpoint: ENDPOINT_W1_HISTORY, lat: 16.7387, lng: 100.1993 },  
+            { name: 'คณะวิทยาศาสตร์', eui: '0000fcc23d224d77', latest_endpoint: ENDPOINT_W2_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7470, lng: 100.1990 },
+            { name: 'อ่างเก็บน้ำหลังหอใน', eui: '0000fcc23d22894f', latest_endpoint: ENDPOINT_W2_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7435, lng: 100.1950 },
+            { name: 'โรงเรียนอนุบาลและประถมศาธิต', eui: '0000fcc23d224ae6', latest_endpoint: ENDPOINT_W2_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7480, lng: 100.1965 },
+            { name: 'คณะพยาบาลศาสตร์', eui: '0000fcc23d229a41', latest_endpoint: ENDPOINT_W2_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7495, lng: 100.1975 },
+            { name: 'ลานสมเด็จพระนเรศวรมหาราช', eui: '0000fcc23d22ad80', latest_endpoint: ENDPOINT_W2_LATEST, history_endpoint: ENDPOINT_W2_HISTORY, lat: 16.7510, lng: 100.1980 }
         ];
 
         // Chart Field Mapping
@@ -1513,12 +1511,12 @@ if (response.end_coords) {
             const formattedPM = isNaN(pmValue) ? null : Math.round(pmValue);
             
             return {
-                source_table: 'weather_station1', eui: d.eui, name: d.name, location: d.location_name,
+                source: 'w1', eui: d.eui, name: d.name, location: d.location_name,
                 lat: Number(d.latitude), lng: Number(d.longitude),
                 temperature: d.temperature, humidity: d.humidity, pm: formattedPM,
                 pm25: formattedPM, pm10: null, // ใส่ pm25 = pm สำหรับ w1
                 wind_speed: d.wind_speed, wind_direct: d.wind_direct,
-                rain: d.rain, rainacc: d.rainacc, timestamp: d.timestamp
+                rain: d.rain, rainacc: d.rainacc, timestamp: d.date_time
             };
         }
 
@@ -1528,7 +1526,7 @@ if (response.end_coords) {
             const formattedPM = isNaN(pmValue) ? null : Math.round(pmValue);
             
             return {
-                source_table: 'weather_station2', eui: d.eui, name: d.name, location: d.location_name,
+                source: 'w2', eui: d.eui, name: d.name, location: d.location_name,
                 lat: Number(d.latitude), lng: Number(d.longitude),
                 temperature: d.temperature, humidity: d.humidity, pm: formattedPM,
                 pm25: formattedPM, pm10: d.pm10,
@@ -1539,11 +1537,11 @@ if (response.end_coords) {
 
         // แก้ไข weather_history_2.php endpoint - สร้าง dynamic endpoint
         function getHistoryEndpoint(station, startDate, endDate) {
-            if (station.source_table === 'weather_station2') {
-                // สำหรับ weather_station2 ใช้ weather_2_history.php พร้อม parameter สำหรับ history
+            if (station.latest_endpoint === ENDPOINT_W2_LATEST) {
+                // สำหรับ weather_2 ใช้ weather_2.php พร้อม parameter สำหรับ history
                 return `./weather_2_history.php?eui=${station.eui}&start=${startDate}&end=${endDate}`;
             } else {
-                // สำหรับ weather_station1 ใช้ endpoint เดิม
+                // สำหรับ weather_1 ใช้ endpoint เดิม
                 return `${station.history_endpoint}?eui=${station.eui}&start=${startDate}&end=${endDate}`;
             }
         }
@@ -1918,24 +1916,25 @@ function createFloatingLineChart(dataType, isRealtime, historyData = null) {
                     } 
                 },
                 y: { 
-                    type: 'category',
-                    labels: STATIONS.map(st => st.name),
+                    type: 'linear',
                     title: { 
                         display: true, 
                         text: fieldMap.label, 
                         font: { family: 'Sarabun', size: 8 } 
                     },
+                    beginAtZero: true,
                     ticks: {
-                        font: { family: 'Sarabun', size: 6 },
-                        maxTicksLimit: 10, // แสดงครบทั้ง 10 สถานี
+                        font: { family: 'Sarabun', size: 8 },
+                        maxTicksLimit: 10,
+                        precision: 1,
                         callback: function(value, index, ticks) {
-                            // จำกัดความยาวของชื่อสถานี
-                            const label = STATIONS[index]?.name || value;
-                            if (label && label.length > 20) {
-                                return label.substring(0, 17) + '...';
-                            }
-                            return label || '';
+                            // แสดงค่าตัวเลขบนแกน Y
+                            return Number(value).toFixed(1);
                         }
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)',
+                        lineWidth: 1
                     }
                 }
             },
@@ -1966,7 +1965,7 @@ function createFloatingLineChart(dataType, isRealtime, historyData = null) {
 
                         const data = await response.json();
                         const normalizedData = data.map(d => {
-                            return station.source_table === 'weather_station1' ? normalizeW1(d) : normalizeW2(d);
+                            return station.latest_endpoint === ENDPOINT_W1_LATEST ? normalizeW1(d) : normalizeW2(d);
                         }).filter(d => d && d.timestamp);
 
                         return { eui: station.eui, data: normalizedData };
@@ -2162,7 +2161,7 @@ async function showGraph(eui) {
                 <label><input type="radio" name="chartMode" value="history"> ย้อนหลัง</label>
             </div>
             <select id="chartType">
-                ${station.source_table === 'weather_station1' ? `
+                ${station.latest_endpoint === ENDPOINT_W1_LATEST ? `
                     <option value="pm">ค่าฝุ่น (PM)</option>
                     <option value="temperature">อุณหภูมิ (°C)</option>
                     <option value="humidity">ความชื้น (%)</option>
@@ -2262,7 +2261,7 @@ async function showGraph(eui) {
             const data = await response.json();
             
             const historyData = data.map(d => {
-                return station.source_table === 'weather_station1' ? normalizeW1(d) : normalizeW2(d);
+                return station.latest_endpoint === ENDPOINT_W1_LATEST ? normalizeW1(d) : normalizeW2(d);
             }).filter(d => d && chartFieldMap[chartType].get(d) != null);
 
             if (historyData.length === 0) {
@@ -2616,20 +2615,19 @@ function addScrollbarThumbScrolling(container) {
                                 <i class="fas fa-cloud-sun"></i> ${info.name || info.location || 'สถานีตรวจวัด'}
                             </h4>
                             <div style="font-size: 11px; opacity: 0.9; margin-top: 4px;">
-                                ประเภท: ${info.source_table === 'weather_station1' ? 'Weather Station 1' : 'Weather Station 2'}
+                                ประเภท: ${info.source === 'w1' ? 'Weather Station 1' : 'Weather Station 2'}
                             </div>
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
-                            ${info.temperature ? `<div><strong><i class="fas fa-thermometer-half" style="color: #e74c3c;"></i> อุณหภูมิ:</strong><br><span style="font-size: 15px; color: #e74c3c;">${Number(info.temperature).toFixed(1)}°C</span></div>` : '<div><strong><i class="fas fa-thermometer-half" style="color: #ccc;"></i> อุณหภูมิ:</strong><br><span style="font-size: 15px; color: #999;">ไม่มีข้อมูล</span></div>'}
-                            ${info.humidity ? `<div><strong><i class="fas fa-tint" style="color: #3498db;"></i> ความชื้น:</strong><br><span style="font-size: 15px; color: #3498db;">${Number(info.humidity).toFixed(1)}%</span></div>` : '<div><strong><i class="fas fa-tint" style="color: #ccc;"></i> ความชื้น:</strong><br><span style="font-size: 15px; color: #999;">ไม่มีข้อมูล</span></div>'}
-                            ${(info.pm !== null && info.pm !== undefined) || (info.pm25 !== null && info.pm25 !== undefined) ? `<div><strong><i class="fas fa-smog" style="color: #e67e22;"></i> ค่าฝุ่น:</strong><br><span style="font-size: 15px; color: ${pmColor(colorMetric)};">${Number(info.pm || info.pm25 || 0).toFixed(1)} µg/m³</span></div>` : '<div><strong><i class="fas fa-smog" style="color: #ccc;"></i> ค่าฝุ่น:</strong><br><span style="font-size: 15px; color: #999;">ไม่มีข้อมูล</span></div>'}
-                            ${info.wind_speed ? `<div><strong><i class="fas fa-wind" style="color: #16a085;"></i> ความเร็วลม:</strong><br><span style="font-size: 15px; color: #16a085;">${Number(info.wind_speed).toFixed(1)} m/s</span></div>` : '<div><strong><i class="fas fa-wind" style="color: #ccc;"></i> ความเร็วลม:</strong><br><span style="font-size: 15px; color: #999;">ไม่มีข้อมูล</span></div>'}
-                            ${info.rain ? `<div><strong><i class="fas fa-cloud-rain" style="color: #1abc9c;"></i> ฝน:</strong><br><span style="font-size: 15px; color: #1abc9c;">${Number(info.rain).toFixed(1)} mm</span></div>` : '<div><strong><i class="fas fa-cloud-rain" style="color: #ccc;"></i> ฝน:</strong><br><span style="font-size: 15px; color: #999;">ไม่มีข้อมูล</span></div>'}
+                            ${info.temperature ? `<div><strong><i class="fas fa-thermometer-half" style="color: #e74c3c;"></i> อุณหภูมิ:</strong><br><span style="font-size: 15px; color: #e74c3c;">${Number(info.temperature).toFixed(1)}°C</span></div>` : ''}
+                            ${info.humidity ? `<div><strong><i class="fas fa-tint" style="color: #3498db;"></i> ความชื้น:</strong><br><span style="font-size: 15px; color: #3498db;">${Number(info.humidity).toFixed(1)}%</span></div>` : ''}
+                            ${(info.pm !== null && info.pm !== undefined) || (info.pm25 !== null && info.pm25 !== undefined) ? `<div><strong><i class="fas fa-smog" style="color: #e67e22;"></i> ค่าฝุ่น:</strong><br><span style="font-size: 15px; color: ${pmColor(colorMetric)};">${Number(info.pm || info.pm25 || 0).toFixed(1)} µg/m³</span></div>` : ''}
+                            ${info.wind_speed ? `<div><strong><i class="fas fa-wind" style="color: #16a085;"></i> ความเร็วลม:</strong><br><span style="font-size: 15px; color: #16a085;">${Number(info.wind_speed).toFixed(1)} m/s</span></div>` : ''}
+                            ${info.rain ? `<div><strong><i class="fas fa-cloud-rain" style="color: #1abc9c;"></i> ฝน:</strong><br><span style="font-size: 15px; color: #1abc9c;">${Number(info.rain).toFixed(1)} mm</span></div>` : ''}
                         </div>
                         <div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-bottom: 12px;">
                             <div style="font-size: 11px; color: #6c757d; margin-bottom: 4px;">
                                 <strong><i class="fas fa-clock"></i> อัปเดต:</strong> ${info.timestamp ? new Date(info.timestamp).toLocaleString('th-TH') : 'ไม่ทราบ'}
-                                <br><small style="color: #999;">🔄 </small>
                             </div>
                             <div style="font-size: 11px; color: #6c757d;">
                                 <strong><i class="fas fa-map-marker-alt"></i> พิกัด:</strong> ${info.lat.toFixed(6)}, ${info.lng.toFixed(6)}
@@ -2679,48 +2677,37 @@ function addScrollbarThumbScrolling(container) {
         // ตรวจสอบและรีเซ็ตข้อมูลเมื่อหมดวัน
         checkAndResetDailyData();
 
-        // โหลดข้อมูล weather จาก endpoint เดียว
-        const weatherData = await fetchJson(ENDPOINT_WEATHER_LATEST);
+        const [w1, w2] = await Promise.allSettled([
+            fetchJson(ENDPOINT_W1_LATEST),
+            fetchJson(ENDPOINT_W2_LATEST),
+        ]);
         let allData = [];
+        if (w1.status === 'fulfilled' && Array.isArray(w1.value)) {
+            allData = allData.concat(w1.value.map(normalizeW1));
+        }
         
-        if (weatherData && Array.isArray(weatherData)) {
-            // แยกข้อมูลตาม source_table
-            const w1Data = weatherData.filter(d => d.source_table === 'weather_station1');
-            const w2Data = weatherData.filter(d => d.source_table === 'weather_station2');
-            
-            allData = allData.concat(w1Data.map(normalizeW1));
-            allData = allData.concat(w2Data.map(normalizeW2));
+        if (w2.status === 'fulfilled' && Array.isArray(w2.value)) {
+            allData = allData.concat(w2.value.map(normalizeW2));
         } else {
-            console.warn('ไม่สามารถโหลดข้อมูลจาก ./weather_2.php ได้');
+            console.warn('ไม่สามารถโหลดข้อมูลจาก ./weather_2.php ได้:', w2.reason);
+            const w2Stations = STATIONS.filter(st => st.latest_endpoint === ENDPOINT_W2_LATEST);
+            for (const station of w2Stations) {
+                try {
+                    const stationData = await fetchJson(`${ENDPOINT_W2_LATEST}?eui=${station.eui}`);
+                    if (stationData && stationData.length > 0) {
+                        allData = allData.concat(stationData.map(normalizeW2));
+                    }
+                } catch (e) {
+                    console.warn(`ไม่สามารถโหลดข้อมูลสถานี ${station.name}:`, e);
+                }
+            }
         }
         
         latestStationData = STATIONS.map(st => {
-            const found = allData.find(d => d.eui === st.eui);
-            if (found) {
-                return {
-                    ...st, ...found, timestamp: found?.timestamp ?? null
-                };
-            } else {
-                // แสดงสถานีแม้ไม่มีข้อมูลล่าสุด
-                return {
-                    ...st, 
-                    lat: st.lat, 
-                    lng: st.lng, 
-                    timestamp: null,
-                    temperature: null,
-                    humidity: null,
-                    pm: null,
-                    pm25: null,
-                    pm10: null,
-                    wind_speed: null,
-                    wind_direct: null,
-                    rain: null,
-                    rainacc: null,
-                    rssi: null,
-                    snr: null,
-                    source_table: st.eui.startsWith('0000fcc23d22') ? 'weather_station1' : 'weather_station2'
-                };
-            }
+            const found = allData.find(d => d.eui === st.eui) || { ...st, lat: st.lat, lng: st.lng };
+            return {
+                ...st, ...found, timestamp: found?.timestamp ?? null
+            };
         });   
 
                 // อัปเดตข้อมูลเรียลไทม์ - เก็บข้อมูลตลอดวัน
@@ -2761,16 +2748,8 @@ function addScrollbarThumbScrolling(container) {
                 });
 
                 let boundsArray = [];
-                // แยกข้อมูลตาม source_table
-                const w1Data = latestStationData.filter(d => d.source_table === 'weather_station1');
-                const w2Data = latestStationData.filter(d => d.source_table === 'weather_station2');
-                
-                console.log(`📊 สถานีทั้งหมด: ${latestStationData.length} สถานี`);
-                console.log(`📊 Weather Station 1: ${w1Data.length} สถานี`);
-                console.log(`📊 Weather Station 2: ${w2Data.length} สถานี`);
-                
-                drawMarkers(layerW1, w1Data, '#3498db', boundsArray);
-                drawMarkers(layerW2, w2Data, '#333333', boundsArray);
+                drawMarkers(layerW1, latestStationData.filter(d => d.latest_endpoint === ENDPOINT_W1_LATEST), '#3498db', boundsArray);
+                drawMarkers(layerW2, latestStationData.filter(d => d.latest_endpoint === ENDPOINT_W2_LATEST), '#333333', boundsArray);
 
                 // อัปเดตกราฟแต่ละสถานีหากเปิดอยู่
                 if (activeEui && floatingChartContainer.style.display !== 'none') {
@@ -2823,10 +2802,9 @@ function addScrollbarThumbScrolling(container) {
                     }
                 }
                 
-                console.log(`📊 โหลดข้อมูลสถานีทั้งหมด: ${latestStationData.length} สถานี`);
-                console.log('📊 สถานี weather_station1:', latestStationData.filter(d => d.source_table === 'weather_station1').length);
-                console.log('📊 สถานี weather_station2:', latestStationData.filter(d => d.source_table === 'weather_station2').length);
-                console.log('⏰ เวลาการอัปเดต:', new Date().toLocaleString('th-TH'));
+                console.log(`โหลดข้อมูลสถานีทั้งหมด: ${latestStationData.length} สถานี`);
+                console.log('สถานี weather_1:', latestStationData.filter(d => d.latest_endpoint === ENDPOINT_W1_LATEST).length);
+                console.log('สถานี weather_2:', latestStationData.filter(d => d.latest_endpoint === ENDPOINT_W2_LATEST).length);
                 
                 // แสดงจำนวนข้อมูลเรียลไทม์ที่เก็บไว้
                 const totalRealtimePoints = Object.values(dailyRealtimeData).reduce((sum, data) => sum + data.length, 0);
@@ -2986,13 +2964,8 @@ function selectStation(eui) {
             loadAllMarkers();
             
             // แสดงสถานะการอัปเดต
-            const updateTime = new Date().toLocaleString('th-TH');
-            console.log('🔄 อัปเดตข้อมูลเรียลไทม์:', updateTime);
-            
-            // อัปเดตเวลาบนหน้าเว็บ
-            const statusElement = document.getElementById('realtime-status');
-            if (statusElement) {
-                statusElement.textContent = `อัปเดตล่าสุด: ${updateTime}`;
+            if (!isPageVisible) {
+                console.log('อัปเดตข้อมูลในพื้นหลัง:', new Date().toLocaleString('th-TH'));
             }
         }, REFRESH_MS);
 
@@ -3371,6 +3344,7 @@ function showPMValues() {
                         <div style="font-size: 16px; color: ${pmColor(pmValue)}; margin-bottom: 10px;">
                             ค่าฝุ่น PM2.5: ${Number(pmValue).toFixed(1)} µg/m³
                         </div>
+                        ${station.timestamp || station.date_time ? `<small style="color: #666; display: block; margin-bottom: 10px;">อัปเดต: ${formatTimestampTH(station.timestamp || station.date_time)}</small>` : ''}
                         <button onclick="showStationChart('${station.eui}', 'pm')" style="
                             width: 100%;
                             padding: 8px;
@@ -3476,6 +3450,7 @@ function showTemperatureValues() {
                     <div style="font-size: 16px; color: ${color}; margin-bottom: 10px;">
                         อุณหภูมิ: ${temp.toFixed(1)}°C
                     </div>
+                    ${station.timestamp || station.date_time ? `<small style="color: #666; display: block; margin-bottom: 10px;">อัปเดต: ${formatTimestampTH(station.timestamp || station.date_time)}</small>` : ''}
                     <button onclick="showStationChart('${station.eui}', 'temperature')" style="
                         width: 100%;
                         padding: 8px;
@@ -3521,6 +3496,7 @@ function showHumidityValues() {
                     <div style="font-size: 16px; color: ${color}; margin-bottom: 10px;">
                         ความชื้น: ${humidity.toFixed(1)}%
                     </div>
+                    ${station.timestamp || station.date_time ? `<small style="color: #666; display: block; margin-bottom: 10px;">อัปเดต: ${formatTimestampTH(station.timestamp || station.date_time)}</small>` : ''}
                     <button onclick="showStationChart('${station.eui}', 'humidity')" style="
                         width: 100%;
                         padding: 8px;
@@ -3586,6 +3562,7 @@ function showWindSpeedValues() {
                             <div><strong>ทิศทางลม:</strong> ${windDirection.toFixed(0)}°</div>
                         </div>
                     </div>
+                    ${station.timestamp || station.date_time ? `<small style="color: #666; display: block; margin-bottom: 10px;">อัปเดต: ${formatTimestampTH(station.timestamp || station.date_time)}</small>` : ''}
                     <button onclick="showStationChart('${station.eui}', 'wind_speed')" style="
                         width: 100%;
                         padding: 8px;
@@ -3631,6 +3608,7 @@ function showRainValues() {
                     <div style="font-size: 16px; color: ${color}; margin-bottom: 10px;">
                         ปริมาณฝน: ${rain.toFixed(1)} mm
                     </div>
+                    ${station.timestamp || station.date_time ? `<small style="color: #666; display: block; margin-bottom: 10px;">อัปเดต: ${formatTimestampTH(station.timestamp || station.date_time)}</small>` : ''}
                     <button onclick="showStationChart('${station.eui}', 'rain')" style="
                         width: 100%;
                         padding: 8px;
@@ -3672,6 +3650,8 @@ function showIDWInterpolation() {
     
     // เก็บข้อมูล PM2.5 จากสถานีที่มีข้อมูล
     const pm25Data = [];
+    let latestTimestamp = null;
+    
     latestStationData.forEach(station => {
         if (station.lat && station.lng && ((station.pm !== null && station.pm !== undefined) || (station.pm25 !== null && station.pm25 !== undefined))) {
             const pmValue = Number(station.pm || station.pm25 || 0);
@@ -3681,8 +3661,18 @@ function showIDWInterpolation() {
                     lng: station.lng,
                     pm25: pmValue,
                     name: station.name,
-                    eui: station.eui
+                    eui: station.eui,
+                    timestamp: station.timestamp || station.date_time || null
                 });
+                
+                // หา timestamp ที่ใหม่ที่สุด
+                const ts = station.timestamp || station.date_time;
+                if (ts) {
+                    const tsDate = new Date(ts);
+                    if (!latestTimestamp || tsDate > new Date(latestTimestamp)) {
+                        latestTimestamp = ts;
+                    }
+                }
             }
         }
     });
@@ -3712,26 +3702,60 @@ function showIDWInterpolation() {
         }
         
         // คำนวณ PM2.5 สำหรับแต่ละ hexagon ใช้ IDW
+        // กำหนดระยะห่างเป็นเมตร (500 เมตร = 0.5 กิโลเมตร) เพื่อจำกัดการแสดง hexagon ให้อยู่ใกล้สถานี
+        const maxDistanceMeters = 500; // 500 เมตร
+        const maxDistanceKm = maxDistanceMeters / 1000; // แปลงเป็นกิโลเมตรสำหรับ turf.js
+        
+        // เก็บ timestamp ล่าสุดไว้ในตัวแปร global สำหรับแสดงใน popup
+        window.idwLatestTimestamp = latestTimestamp;
+        
         for (const cell of hexGrid.features) {
             const center = turf.centerOfMass(cell).geometry.coordinates;
-            const pmVal = idwAtCoord(center, featuresFC, 2, 3); // power=2, maxDistance=3km
-            cell.properties = cell.properties || {};
-            cell.properties.pm = (pmVal !== null && Number.isFinite(pmVal)) ? pmVal : null;
             
-            // นับจำนวนสถานีที่มีอิทธิพล
+            // นับจำนวนสถานีที่มีข้อมูลและอยู่ในระยะที่กำหนด (เป็นเมตร)
             let contributors = 0;
+            let minDistanceM = Infinity;
+            
             for (const s of pointFeatures) {
-                const d = turf.distance(turf.point(center), s, {units:'kilometers'});
-                if (d <= 3) contributors++;
+                // ตรวจสอบว่าสถานีมีข้อมูล PM2.5 ที่ถูกต้อง
+                if (s.properties.pm === null || !Number.isFinite(s.properties.pm)) continue;
+                const dKm = turf.distance(turf.point(center), s, {units:'kilometers'});
+                const dM = dKm * 1000; // แปลงเป็นเมตร
+                
+                if (dM <= maxDistanceMeters) {
+                    contributors++;
+                }
+                if (dM < minDistanceM) minDistanceM = dM;
             }
+            
+            // คำนวณ PM2.5 เฉพาะถ้ามีสถานีในระยะที่กำหนด (เป็นเมตร)
+            if (contributors > 0 && minDistanceM <= maxDistanceMeters) {
+                const pmVal = idwAtCoord(center, featuresFC, 2, maxDistanceKm); // power=2, maxDistance เป็นกิโลเมตร
+                cell.properties = cell.properties || {};
+                cell.properties.pm = (pmVal !== null && Number.isFinite(pmVal)) ? pmVal : null;
+            } else {
+                cell.properties = cell.properties || {};
+                cell.properties.pm = null;
+            }
+            
             cell.properties._contributors = contributors;
+            cell.properties._minDistance = minDistanceM; // เก็บเป็นเมตร
         }
         
         // แสดงผล hexagonal grid
         renderHexGrid(hexGrid);
         
-        // แสดงสถานีต้นฉบับ
-        renderStations(pm25Data);
+        // แสดงสถานีต้นฉบับ - ใช้ข้อมูลเรียลไทม์จาก latestStationData
+        const stationDataForRender = pm25Data.map(point => ({
+            lat: point.lat,
+            lng: point.lng,
+            pm25: point.pm25,
+            name: point.name,
+            eui: point.eui,
+            pm: point.pm25, // เพิ่ม pm สำหรับความเข้ากันได้
+            timestamp: point.timestamp // เพิ่ม timestamp
+        }));
+        renderStations(stationDataForRender);
         
         // แสดง legend
         showIDWLegend();
@@ -3749,9 +3773,9 @@ function buildHexGrid(featuresFC, cellSideKm) {
     const bbox = turf.bbox(featuresFC);
     if (!bbox || bbox.length !== 4) return null;
     
-    // เพิ่ม padding ให้ bbox
-    const padLng = (bbox[2] - bbox[0]) * 0.05 || 0.001;
-    const padLat = (bbox[3] - bbox[1]) * 0.05 || 0.001;
+    // เพิ่ม padding ให้ bbox มากขึ้นเพื่อให้เป็นสี่เหลี่ยมและครอบคลุมส่วนบนล่าง
+    const padLng = (bbox[2] - bbox[0]) * 0.3 || 0.01; // เพิ่มจาก 5% เป็น 30%
+    const padLat = (bbox[3] - bbox[1]) * 0.3 || 0.01; // เพิ่มจาก 5% เป็น 30%
     const bboxP = [bbox[0]-padLng, bbox[1]-padLat, bbox[2]+padLng, bbox[3]+padLat];
     
     const hex = turf.hexGrid(bboxP, cellSideKm, {units:'kilometers'});
@@ -3766,22 +3790,47 @@ function idwAtCoord(coord, featuresFC, power=2, maxDistanceKm=0) {
     // ตรวจสอบว่ามีจุดที่ตรงกันหรือไม่
     for (const s of pts) {
         const d0 = turf.distance(turf.point(coord), s, {units:'kilometers'});
-        if (d0 === 0) return s.properties.pm;
+        if (d0 < 0.001) return s.properties.pm; // ถ้าอยู่ใกล้มากให้ใช้ค่าจากสถานีตรงนั้น
     }
     
     let num = 0, den = 0;
+    let validPts = 0;
+    
     for (const s of pts) {
         const d = turf.distance(turf.point(coord), s, {units:'kilometers'});
-        if (maxDistanceKm && d > maxDistanceKm) continue;
+        
+        // ถ้ากำหนด maxDistanceKm และระยะห่างเกิน ให้ข้าม
+        if (maxDistanceKm > 0 && d > maxDistanceKm) continue;
         
         // หลีกเลี่ยงการหารด้วยศูนย์
-        const w = 1 / Math.pow(Math.max(d, 1e-6), power);
+        const w = 1 / Math.pow(Math.max(d, 0.001), power);
         num += w * s.properties.pm;
         den += w;
+        validPts++;
     }
     
-    if (den === 0) return null;
+    // ต้องมีอย่างน้อย 1 สถานีในระยะที่กำหนด
+    if (den === 0 || validPts === 0) return null;
+    
     return num / den;
+}
+
+// ฟังก์ชันสำหรับ format timestamp เป็นภาษาไทย
+function formatTimestampTH(ts) {
+    if (!ts) return '';
+    try {
+        const date = new Date(ts);
+        return date.toLocaleString('th-TH', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+    } catch (e) {
+        return '';
+    }
 }
 
 // ฟังก์ชันแสดงผล hexagonal grid
@@ -3794,28 +3843,48 @@ function renderHexGrid(hexFC) {
     
     if (!hexFC || !hexFC.features || hexFC.features.length === 0) return;
     
+    // กำหนดระยะห่างสูงสุด (เมตร) - ต้องตรงกับที่ใช้ในการคำนวณ
+    const maxDistanceMeters = 500;
+    
     hexFC.features.forEach(feature => {
         const pm = feature.properties.pm;
-        if (pm !== null && !isNaN(pm)) {
-            const color = getIDWColor(pm);
-            
-            const hexPolygon = L.polygon(
-                feature.geometry.coordinates[0].map(coord => [coord[1], coord[0]]),
-                {
-                    fillColor: color,
-                    color: '#555',
-                    weight: 0.3,
-                    fillOpacity: 0.75,
-                    className: 'idw-hexagon'
-                }
-            );
-            
-            const cnt = feature.properties._contributors || 0;
-            const txt = `<b>PM2.5: </b>${Math.round(pm)} µg/m³ ${cnt}`;
-            hexPolygon.bindPopup(txt);
-            
-            idwLayer.addLayer(hexPolygon);
+        const contributors = feature.properties._contributors || 0;
+        const minDistanceM = feature.properties._minDistance || Infinity; // ระยะห่างเป็นเมตร
+        
+        // แสดง hexagon ทั้งหมด แต่ hexagon ที่ไม่มีข้อมูลจะแสดงเป็นสีเทาหรือโปร่งใส
+        const hasData = pm !== null && !isNaN(pm) && contributors > 0 && minDistanceM <= maxDistanceMeters;
+        
+        let color, fillOpacity, txt;
+        
+        const timestampStr = formatTimestampTH(window.idwLatestTimestamp);
+        
+        if (hasData) {
+            // ใช้ฟังก์ชัน getHexagonColor เพื่อไม่แสดงสีแดง (แดงเฉพาะจุดสถานี)
+            color = getHexagonColor(pm);
+            fillOpacity = 0.75;
+            txt = `<b>PM2.5: </b>${Math.round(pm)} µg/m³<br>` +
+                  (timestampStr ? `<small style="color: #666;">วันที่และเวลา: ${timestampStr}</small>` : '');
+        } else {
+            // hexagon ที่ไม่มีข้อมูลแสดงเป็นสีเทาโปร่งใส
+            color = '#e0e0e0';
+            fillOpacity = 0.1;
+            txt = `<b>ไม่มีข้อมูล</b><br>ระยะห่างจากสถานีที่ใกล้ที่สุด: ${minDistanceM !== Infinity ? minDistanceM.toFixed(0) + ' m' : 'เกินระยะ'}` +
+                  (timestampStr ? `<br><small style="color: #666;">ข้อมูลล่าสุด: ${timestampStr}</small>` : '');
         }
+        
+        const hexPolygon = L.polygon(
+            feature.geometry.coordinates[0].map(coord => [coord[1], coord[0]]),
+            {
+                fillColor: color,
+                color: '#ccc',
+                weight: 0.2,
+                fillOpacity: fillOpacity,
+                className: 'idw-hexagon'
+            }
+        );
+        
+        hexPolygon.bindPopup(txt);
+        idwLayer.addLayer(hexPolygon);
     });
     
     map.addLayer(idwLayer);
@@ -3824,28 +3893,50 @@ function renderHexGrid(hexFC) {
 // ฟังก์ชันแสดงสถานีต้นฉบับ
 function renderStations(stations) {
     stations.forEach(station => {
+        const pm25 = station.pm25 || station.pm || 0;
+        const color = getIDWColor(pm25);
+        
+        // สำหรับสถานีที่มีค่า PM2.5 สูง (สีแดง) ให้ใช้ขนาดใหญ่และสีชัดเจนขึ้น
+        const isHigh = pm25 > 75;
+        
+        const timestampStr = formatTimestampTH(station.timestamp);
+        
         const marker = L.circleMarker([station.lat, station.lng], {
-            radius: 6,
-            fillColor: getIDWColor(station.pm25),
-            color: '#222',
-            weight: 1,
-            fillOpacity: 0.95,
+            radius: isHigh ? 8 : 6, // ขยายขนาดถ้าค่าสูง
+            fillColor: color,
+            color: isHigh ? '#cc0000' : '#222', // ใช้สีแดงเข้มสำหรับ stroke ถ้าค่าสูง
+            weight: isHigh ? 2 : 1, // หนาขึ้นถ้าค่าสูง
+            fillOpacity: 1.0, // ทำให้ชัดเจนเต็มที่
             className: 'idw-station-marker'
         }).bindPopup(`
             <b>${station.name}</b><br>
-            PM2.5: ${Math.round(station.pm25)} µg/m³<br>
-            lat: ${station.lat.toFixed(5)} lng: ${station.lng.toFixed(5)}
+            PM2.5: ${Math.round(pm25)} µg/m³<br>
+            ${isHigh ? '<span style="color: red; font-weight: bold;">⚠️ ค่าสูง</span><br>' : ''}
+            ${timestampStr ? `<small style="color: #666;">อัปเดต: ${timestampStr}</small><br>` : ''}
+            <small>lat: ${station.lat.toFixed(5)} lng: ${station.lng.toFixed(5)}</small>
         `);
         
         idwLayer.addLayer(marker);
     });
 }
 
-// ฟังก์ชันกำหนดสีตามค่าฝุ่น PM2.5 (ตามมาตรฐานไทย)
+// ฟังก์ชันกำหนดสีตามค่าฝุ่น PM2.5 (ตามมาตรฐานไทย) - สำหรับจุดสถานี
 function getIDWColor(v) {
     if (v === null || isNaN(v)) return '#999999';
     
     if (v > 75.0) return '#ff0000'; // แดง
+    if (v > 37.5) return '#ff9900'; // ส้ม
+    if (v > 25.0) return '#ffff00'; // เหลือง
+    if (v > 15.0) return '#00b050'; // เขียว
+    return '#00b0f0'; // ฟ้า
+}
+
+// ฟังก์ชันกำหนดสีสำหรับ hexagon (ไม่แสดงสีแดง - แดงเฉพาะจุดสถานี)
+function getHexagonColor(v) {
+    if (v === null || isNaN(v)) return '#999999';
+    
+    // ไม่แสดงสีแดงสำหรับ hexagon - ถ้าค่าเกิน 75 ให้แสดงเป็นสีส้มแทน
+    if (v > 75.0) return '#ff0000'; // ส้ม (แทนแดง)
     if (v > 37.5) return '#ff9900'; // ส้ม
     if (v > 25.0) return '#ffff00'; // เหลือง
     if (v > 15.0) return '#00b050'; // เขียว
@@ -4634,7 +4725,7 @@ async function showGraph(eui) {
                 <label><input type="radio" name="chartMode" value="history"> ย้อนหลัง</label>
             </div>
             <select id="chartType">
-                ${station.source_table === 'weather_station1' ? `
+                ${station.latest_endpoint === ENDPOINT_W1_LATEST ? `
                     <option value="pm">ค่าฝุ่น (PM)</option>
                     <option value="temperature">อุณหภูมิ (°C)</option>
                     <option value="humidity">ความชื้น (%)</option>
@@ -4722,7 +4813,7 @@ async function showGraph(eui) {
             const data = await response.json();
             
             const historyData = data.map(d => {
-                return station.source_table === 'weather_station1' ? normalizeW1(d) : normalizeW2(d);
+                return station.latest_endpoint === ENDPOINT_W1_LATEST ? normalizeW1(d) : normalizeW2(d);
             }).filter(d => d && chartFieldMap[chartType].get(d) != null);
 
             if (historyData.length === 0) {
@@ -5134,7 +5225,7 @@ function showStationChart(eui, dataType) {
         if (chartTypeSelect) {
             // แปลง dataType เป็นค่าที่ถูกต้องสำหรับแต่ละสถานี
             let mappedType = dataType;
-            if (dataType === 'pm' && station.source_table === 'weather_station2') {
+            if (dataType === 'pm' && station.latest_endpoint === ENDPOINT_W2_LATEST) {
                 mappedType = 'pm25'; // W2 ใช้ pm25 แทน pm
             }
             
